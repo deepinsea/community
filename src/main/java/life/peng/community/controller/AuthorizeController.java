@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 //在Tomcat启动时，将这个类作为控制器加载到Spring的Bean工厂
 public class AuthorizeController {
@@ -28,10 +30,9 @@ public class AuthorizeController {
     //RequestMapping的作用是请求路径的跳转,相当于文件系统,Url唯一
     //RequestBody会将这个方法返回的数据通过IO流写入到浏览器
     //GetMapping组合注解，是@RequestMapping(method = RequestMethod.GET)的缩写
-   public String callback(@RequestParam(name = "code") String code,
-                          @RequestParam(name = "state") String state)
-                          //@RequestParam 获取请求参数的值
-    {
+   public String callback(@RequestParam(name = "code") String code,//@RequestParam 获取请求参数的值
+                          @RequestParam(name = "state") String state,
+                          HttpServletRequest request) {
         AccesTokensDTO accesTokensDTO=new AccesTokensDTO();
         accesTokensDTO.setClient_id(clientId);
         accesTokensDTO.setClient_secret(clientSecret);
@@ -40,7 +41,13 @@ public class AuthorizeController {
         accesTokensDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accesTokensDTO);
         GithubUser user = githubProvider.getuser(accessToken);
-        System.out.println(user.getName());
-        return "hello";
+        if (user!=null){
+            //登录成功，写cookie和session
+            request.getSession().setAttribute("user",user);
+            return "redirect:/";
+        }else{
+            //登录失败，重新登录
+            return "redirect:/";
+        }
     }
 }
