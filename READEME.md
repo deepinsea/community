@@ -13,6 +13,10 @@ https://v3.bootcss.com/getting-started/
 [^_^]:BootStrap框架开发示例
 https://developer.github.com/apps/building-github-apps/creating-a-github-app/
 [^_^]:Github OAuth市场的API开发接口对接
+https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#boot-features-embedded-database-support
+[^_^]:Spring配置mybatis的官方文档
+http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
+[^_^]:SpringBoot集成mybatis文档
 
 ##工具
 https://git-scm.com/download 
