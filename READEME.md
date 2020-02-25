@@ -24,3 +24,16 @@ https://git-scm.com/download
 https://git-scm.com/download [>_<]：git下载地址
 https://www.visual-paradigm.com [>_<]：VP工具
 
+##脚本
+```sql
+create table USER
+(
+    ID           INTEGER default NEXT VALUE FOR "PUBLIC".auto_increment,
+    ACCOUNT_ID   VARCHAR,
+    NAME         VARCHAR(50),
+    TOKEN        CHAR(36),
+    GMT_CREATE   BIGINT,
+    GMT_MODIFIED BIGINT,
+    constraint USER_PK
+        primary key (ID)
+);
