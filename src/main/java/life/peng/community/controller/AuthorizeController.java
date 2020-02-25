@@ -23,7 +23,7 @@ public class AuthorizeController {
     private GithubProvider githubProvider;
 
     @Value("${github.client.id}")
-    //value将会读取properties文件中对应的值,从而实现业务层的封装
+    //将会读取properties文件中对应的值,从而实现业务层的封装
     private String clientId;
     @Value("${github.client.secret}")
     private String clientSecret;

@@ -19,6 +19,8 @@ http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
 [^_^]:SpringBoot集成mybatis文档
 https://www.runoob.com/mysql/mysql-insert-query.html
 [^_^]:菜鸟教程
+https://flywaydb.org/getstarted/firststeps/maven
+[^_^]:Spring集成flyway(数据库托管工具)
 
 ##工具
 https://git-scm.com/download 
@@ -29,13 +31,13 @@ https://www.visual-paradigm.com [>_<]：VP工具
 ##脚本
 ```sql
 create table USER
-(
-    ID           INTEGER default NEXT VALUE FOR "PUBLIC".auto_increment,
-    ACCOUNT_ID   VARCHAR,
-    NAME         VARCHAR(50),
-    TOKEN        CHAR(36),
-    GMT_CREATE   BIGINT,
-    GMT_MODIFIED BIGINT,
-    constraint USER_PK
-        primary key (ID)
-);
+  (
+      ID           INTEGER default NEXT VALUE FOR "PUBLIC".auto_increment,
+      ACCOUNT_ID   VARCHAR,
+      NAME         VARCHAR(50),
+      TOKEN        CHAR(36),
+      GMT_CREATE   BIGINT,
+      GMT_MODIFIED BIGINT,
+      constraint USER_PK
+          primary key (ID)
+  );
