@@ -17,6 +17,8 @@ https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#boot-fea
 [^_^]:Spring配置mybatis的官方文档
 http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
 [^_^]:SpringBoot集成mybatis文档
+https://www.runoob.com/mysql/mysql-insert-query.html
+[^_^]:菜鸟教程
 
 ##工具
 https://git-scm.com/download 
