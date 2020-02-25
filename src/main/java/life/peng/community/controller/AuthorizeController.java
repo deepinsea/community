@@ -11,7 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
@@ -38,7 +39,8 @@ public class AuthorizeController {
     //GetMapping组合注解，是@RequestMapping(method = RequestMethod.GET)的缩写
    public String callback(@RequestParam(name = "code") String code,//@RequestParam 获取请求参数的值
                           @RequestParam(name = "state") String state,
-                          HttpServletRequest request) {
+//                          HttpServletRequest request,
+                          HttpServletResponse response) {
         AccesTokensDTO accesTokensDTO=new AccesTokensDTO();
         accesTokensDTO.setClient_id(clientId);
         accesTokensDTO.setClient_secret(clientSecret);
@@ -48,16 +50,18 @@ public class AuthorizeController {
         String accessToken = githubProvider.getAccessToken(accesTokensDTO);
         GithubUser githubUser = githubProvider.getuser(accessToken);
         if (githubUser!=null){
-            //获取用户信息(不能放到写cookie和session下面)
+            //获取用户信息,并且插入到数据库中(不能放到写cookie和session下面)
             User user = new User();
-            user.setToken(UUID.randomUUID().toString());
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
-            //登录成功，写cookie和session
-            request.getSession().setAttribute("user",githubUser);
+            response.addCookie(new Cookie("token",token));
+//            //登录成功，写cookie和session
+//            request.getSession().setAttribute("user",githubUser);
             return "redirect:/";
 
         }else{
