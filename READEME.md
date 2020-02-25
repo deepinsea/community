@@ -19,14 +19,13 @@ http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
 [^_^]:SpringBoot集成mybatis文档
 https://www.runoob.com/mysql/mysql-insert-query.html
 [^_^]:菜鸟教程
-https://flywaydb.org/getstarted/firststeps/maven
-[^_^]:Spring集成flyway(数据库托管工具)
 
 ##工具
 https://git-scm.com/download 
-[>_<]：git下载地址
-https://git-scm.com/download [>_<]：git下载地址
+[>_<]：git工具
 https://www.visual-paradigm.com [>_<]：VP工具
+https://flywaydb.org/getstarted/firststeps/maven
+[^_^]:flyway数据库托管工具
 
 ##脚本
 ```sql
@@ -41,3 +40,7 @@ create table USER
       constraint USER_PK
           primary key (ID)
   );
+  ```
+  ```bash
+  mvn flyway:migrate
+  ```
