@@ -51,7 +51,7 @@
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发布</h2>
             <hr/>
 
-            <form>
+            <form action="/publish" method="post">
                 <div class="form-group">
                     <label for="title">问题标题(简单扼要)：</label>
                     <input type="text" class="form-control" name="title" id="title" placeholder="问题标题__">
@@ -65,6 +65,7 @@
                     <input type="text" class="form-control" name="tag" id="tag" placeholder="输入标签, 以,分隔">
                 </div>
 
+                <span class="alert alert-danger" th:if="error!=null" th:text="${error}"></span>
                 <button type="submit" class="btn btn-success btn-publish">发布</button>
             </form>
         </div>
