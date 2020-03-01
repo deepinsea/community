@@ -30,11 +30,29 @@ public class PublishController {
 
     @PostMapping("/publish")
     public String doPublish(
-            @RequestParam("title") String title,
-            @RequestParam("description") String description,
-            @RequestParam("tag") String tag,
+            @RequestParam(value = "title",required = false) String title,//设置非必须值
+            @RequestParam(value = "description",required = false) String description,
+            @RequestParam(value = "tag",required = false) String tag,
             HttpServletRequest request,
-            Model model){
+            Model model){//服务器端传递的东西写到model中
+        // ctrl+D快速复制一行
+        model.addAttribute("title",title);
+        model.addAttribute("description",description);
+        model.addAttribute("tag",tag);
+        //通过服务端校验发布的内容是否为空,从一开始从客户端接收数据回显到页面就开始
+        if (title == null || title == "") {
+            model.addAttribute("error", "标题不能为空");
+            return "publish";
+        }
+        if (description == null || description == "") {
+            model.addAttribute("error", "问题补充不能为空");
+            return "publish";
+        }
+        if (tag == null || tag == "") {
+            model.addAttribute("error", "标签不能为空");
+            return "publish";
+        }
+        //验证是否登陆
         User user = null;
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
@@ -48,6 +66,7 @@ public class PublishController {
             }
         }
         if ( user == null){
+            //未登录就提交的情况
             model.addAttribute("error","用户未登录");
             return "publish";
         }
