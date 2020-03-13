@@ -2,7 +2,7 @@ package life.peng.community.dto;
 
 public class GithubUser {
     private String name;
-    private String  id;
+    private long id;
     private String bio;
 
     public String getName() {
@@ -13,11 +13,11 @@ public class GithubUser {
         this.name = name;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

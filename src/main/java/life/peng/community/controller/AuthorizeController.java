@@ -37,11 +37,11 @@ public class AuthorizeController {
     //RequestMapping的作用是请求路径的跳转,相当于文件系统,Url唯一
     //RequestBody会将这个方法返回的数据通过IO流写入到浏览器
     //GetMapping组合注解，是@RequestMapping(method = RequestMethod.GET)的缩写
-    public String callback(@RequestParam(name = "code") String code,//@RequestParam 获取请求参数的值
-                           @RequestParam(name = "state") String state,
+   public String callback(@RequestParam(name = "code") String code,//@RequestParam 获取请求参数的值
+                          @RequestParam(name = "state") String state,
 //                          HttpServletRequest request,
-                           HttpServletResponse response) {
-        AccesTokensDTO accesTokensDTO = new AccesTokensDTO();
+                          HttpServletResponse response) {
+        AccesTokensDTO accesTokensDTO=new AccesTokensDTO();
         accesTokensDTO.setClient_id(clientId);
         accesTokensDTO.setClient_secret(clientSecret);
         accesTokensDTO.setCode(code);
@@ -49,7 +49,7 @@ public class AuthorizeController {
         accesTokensDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accesTokensDTO);
         GithubUser githubUser = githubProvider.getuser(accessToken);
-        if (githubUser != null && githubUser.getId() != null) {
+        if (githubUser!=null){
             //获取用户信息,并且插入到数据库中(不能放到写cookie和session下面)
             User user = new User();
             String token = UUID.randomUUID().toString();
@@ -59,12 +59,12 @@ public class AuthorizeController {
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
-            response.addCookie(new Cookie("token", token));
+            response.addCookie(new Cookie("token",token));
 //            //登录成功，写cookie和session
 //            request.getSession().setAttribute("user",githubUser);
             return "redirect:/";
 
-        } else {
+        }else{
             //登录失败，重新登录
             return "redirect:/";
         }

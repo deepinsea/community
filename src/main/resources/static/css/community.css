@@ -6,6 +6,7 @@ body{
     background-color: white;
 }
 .btn-publish{
-    float: right;
+    display: block;
+    margin: 0 auto;
     margin-bottom: 15px;
 }
