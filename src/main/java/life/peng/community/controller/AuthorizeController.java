@@ -35,7 +35,7 @@ public class AuthorizeController {
 
     @GetMapping("/callback")
     //RequestMapping的作用是请求路径的跳转,相当于文件系统,Url唯一
-    //RequestBody会将这个方法返回的数据通过IO流写入到浏览器
+    //RequestBody会将这个方法返回的json数据写入到服务器
     //GetMapping组合注解，是@RequestMapping(method = RequestMethod.GET)的缩写
    public String callback(@RequestParam(name = "code") String code,//@RequestParam 获取请求参数的值
                           @RequestParam(name = "state") String state,
