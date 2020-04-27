@@ -41,6 +41,7 @@ public class AuthorizeController {
                           @RequestParam(name = "state") String state,
 //                          HttpServletRequest request,
                           HttpServletResponse response) {
+
         AccesTokensDTO accesTokensDTO=new AccesTokensDTO();
         accesTokensDTO.setClient_id(clientId);
         accesTokensDTO.setClient_secret(clientSecret);
