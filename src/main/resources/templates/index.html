@@ -2,16 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>南街北巷的社区</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/community.css"/>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">南街社区</span>
             </button>
             <a class="navbar-brand" href="#">南街社区</a>
@@ -25,14 +27,16 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="/publish">发布</a></li>
                 <li class="dropdown" th:if="${session.user!=null}">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">消息中心</a></li>
-                    <li><a href="#">个人资料n</a></li>
-                    <li><a href="#">退出登录</a></li>
-                    <li role="separator" class="divider"></li>
-                </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">消息中心</a></li>
+                        <li><a href="#">个人资料n</a></li>
+                        <li><a href="#">退出登录</a></li>
+                        <li role="separator" class="divider"></li>
+                    </ul>
                 </li>
                 <li th:if="${session.user==null}">
                     <a href="https://github.com/login/oauth/authorize?client_id=6ec6304bbb35b05f0194&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登录</a>
@@ -42,5 +46,37 @@
         </div>
     </div>
 </nav>
+
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
+            <hr/>
+
+            <div class="media" th:each="question : ${questions}">
+<!--               注意：这里question是构造的List形参，questions才是List类型的实参-->
+                <div class="media-left">
+                    <a href="#">
+                        <img style="width: 38px;" class="img-circle media-object"
+                             th:src="${question.user.avatarUrl}">
+                    </a>
+                    <!--                        src="https://avatars1.githubusercontent.com/u/57308175?v=4"-->
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.title}">怎么快速学会Spring Boot开发</h4>
+                    <span th:text="${question.description}"></span><br>
+                    <span class="text-desc">
+                        <span th:text="${question.commentCount}"></span>个回复 •
+                        <span th:text="${question.viewCount}"></span> 次浏览 •
+                        <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>热门话题</h3>
+        </div>
+    </div>
+</div>
 </body>
 </html>

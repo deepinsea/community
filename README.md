@@ -9,12 +9,14 @@
 [Github OAuth市场的API开发接口](https://developer.github.com/apps/building-github-apps/creating-a-github-app/)<br>
 [Spring配置mybatis的官方文档](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#boot-features-embedded-database-support)<br>
 [SpringBoot集成mybatis文档](http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)<br>
-[菜鸟教程](https://www.runoob.com/mysql/mysql-insert-query.html)
+[菜鸟教程](https://www.runoob.com/mysql/mysql-insert-query.html)<br>
+[Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)
 
 ### 工具
 [Git](https://git-scm.com/download)<br>
 [VP](https://www.visual-paradigm.com)<br>
-[Flyway](https://flywaydb.org/getstarted/firststeps/maven)
+[Flyway](https://flywaydb.org/getstarted/firststeps/maven)<br>
+[Lombok](https://projectlombok.org/setup/maven)
 
 ### 脚本
 ```sql

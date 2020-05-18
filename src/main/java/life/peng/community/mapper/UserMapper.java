@@ -10,9 +10,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface UserMapper {//将获取到用户信息存入数据库并且写入session
-    @Insert("insert into user (name,account_id,token,gmt_create,gmt_modified) values (#{name},#{accountId},#{token},#{gmtCreate},#{gmtModified})")
+    @Insert("insert into user (name,account_id,token,gmt_create,gmt_modified,avatar_url) values (#{name},#{accountId},#{token},#{gmtCreate},#{gmtModified},#{avatarUrl})")
     void insert(User user);//如果是类就需要变成方法体（;变成{}）
 
     @Select("select * from user where token = #{token}")
     User findByToken(@Param("token") String token);
+
+    @Select("select * from user where id = #{id}")
+    User findById(@Param("id") Integer id);
 }
