@@ -15,7 +15,7 @@
 ### 工具
 [Git](https://git-scm.com/download)<br>
 [VP](https://www.visual-paradigm.com)<br>
-[Flyway](https://flywaydb.org/getstarted/firststeps/maven)<br>
+[Flyway](https://flywaydb.org/documentation/)<br>
 [Lombok](https://projectlombok.org/setup/maven)
 
 ### 脚本
